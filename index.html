@@ -1,56 +1,197 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Luke Vargas – Engineering Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luke Vargas Portfolio</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 2rem;
-      background-color: #f9f9f9;
-      max-width: 800px;
-      margin: auto;
+    html, body {
+      background-color: black;
     }
-    .section {
-      margin-bottom: 2rem;
-      background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+
+    /* Fade-in animation */
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn ease 2s forwards;
     }
-    a {
-      color: #1a73e8;
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    html, body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #12121A;
+      color: #fff;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: black;
+    }
+
+    .navbar a {
+      color: white;
       text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
     }
-    a:hover {
-      text-decoration: underline;
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4rem 8%;
+      background-image: url('assets/banner.jpg');
+      background-size: cover; background-attachment: fixed;
+      background-position: center;
+      color: white;
+    }
+
+    .hero img {
+      width: 45%;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    .hero-text {
+      width: 50%;
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-text h2 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #eee;
+      margin-bottom: 1rem;
+    }
+
+    .hero-text p {
+      font-size: 1rem;
+      color: #ccc;
+      max-width: 500px;
+    }
+
+    .projects {
+      padding: 3rem 8%;
+      background: linear-gradient(to bottom, #1a1a1a, #4d4d4d);
+      color: white;
+      text-align: center;
+    }
+
+    .projects h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .project-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: white;
+      border-left: 6px solid #FFD700;
+      width: 270px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      text-decoration: none;
+      color: black;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 1rem;
+    }
+
+    .card-content h3 {
+      margin: 0.3rem 0;
+      font-weight: 700;
+    }
+
+    .card-content p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #444;
     }
   </style>
 </head>
 <body>
 
-  <h1>Luke Vargas</h1>
-  <p>Electrical Engineering @ UC Irvine<br>Theta Tau | HyperXite</p>
-
-  <div class="section">
-    <h2>Levitation Rig Project</h2>
-    <p>
-      Designed and assembled an experimental EDS rig using Halbach arrays.
-      CAD in SolidWorks, fabricated with PETG and aluminum.
-    </p>
-    <p>
-      <a href="https://drive.google.com/drive/u/5/folders/1m8sy5YqJTdzyujr2XZF6R-snhmRnZtw4" target="_blank">
-        📄 View Project Report (Google Drive)
-      </a>
-    </p>
+  <div class="navbar">
+    <div><strong>Luke Vargas</strong></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="experience.html">Experience</a>
+      <a href="contact.html">Contact</a>
+    </nav>
   </div>
 
-  <div class="section">
-    <h2>Theta Tau Presidency</h2>
-    <p>
-      Led 70+ member engineering org. Hosted technical events, managed recruitment,
-      and supported project collaboration.
-    </p>
+  <div class="hero">
+    <img src="assets/profile.jpg" alt="Luke Profile"/>
+    <div class="hero-text">
+      <h1>Luke Vargas</h1>
+      <h2>Electrical Engineering @ UC Irvine | Theta Tau | BCI Lab</h2>
+      <p>Engineer with a passion for brain-computer interfaces, biomechanics, and hands-on innovation in neurotechnology and high-speed transportation systems.</p>
+    </div>
+  </div>
+
+  <div class="projects">
+    <h2>Featured Projects</h2>
+    <div class="project-grid">
+      <a href="biodynamics.html" class="card fade-in" style="animation-delay: 1s;">
+        <img src="assets/biodynamics.jpg" alt="BioDynamics">
+        <div class="card-content">
+          <h3>BioDynamics Laboratory</h3>
+          <p>EEG/EMG research on motor activation/deactivation.</p>
+        </div>
+      </a>
+      <a href="bci.html" class="card fade-in" style="animation-delay: 2s;">
+        <img src="assets/bci.jpg" alt="BCI Lab">
+        <div class="card-content">
+          <h3>BCI Lab</h3>
+          <p>Real-time EEG signal decoding & brain interfacing.</p>
+        </div>
+      </a>
+      <a href="hyperxite.html" class="card fade-in" style="animation-delay: 3s;">
+        <img src="assets/hyperxite.jpg" alt="HyperXite">
+        <div class="card-content">
+          <h3>HyperXite</h3>
+          <p>Designed an EDS test rig for passive maglev.</p>
+        </div>
+      </a>
+      <a href="rushbot.html" class="card fade-in" style="animation-delay: 4s;">
+        <img src="assets/rover.jpg" alt="RushBot">
+        <div class="card-content">
+          <h3>RushBot</h3>
+          <p>Electronics lead for autonomous rover build.</p>
+        </div>
+      </a>
+    </div>
   </div>
 
 </body>

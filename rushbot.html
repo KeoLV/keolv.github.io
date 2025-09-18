@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RushBot Autonomous Rover | Luke Vargas</title>
+  <style>
+:root{
+  --glass-bg: rgba(12,12,16,0.55);
+  --glass-border: rgba(255,255,255,0.08);
+  --text-dim:#d7d7d7;
+  --gold:#FFD700;
+  --pad: 1rem;
+  --gap: 2rem;
+  --tileH: clamp(220px, 28vw, 320px);
+}
+*,*::before,*::after{ box-sizing:border-box; }
+html,body{
+  margin:0;
+  font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+  color:#fff;
+  background:url("assets/bannerb.jpg") center/cover fixed no-repeat #0b0b10;
+}
+a{ color:inherit; }
+
+.navbar{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:#000;border-bottom:1px solid rgba(255,255,255,.06);position:sticky;top:0;z-index:50;}
+.navbar a{color:#fff;text-decoration:none;margin-left:1.25rem;font-weight:600;}
+
+/* Black gradient banner (match hyperxite.html) */
+.intro-banner{
+  position:relative;
+  background: linear-gradient(180deg, #000000 0%, #131313 55%, #202020 100%);
+  padding: clamp(18px, 3vw, 32px) 0 clamp(14px, 2.5vw, 26px);
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  box-shadow: inset 0 -30px 60px rgba(0,0,0,.10), 0 14px 28px rgba(0,0,0,.12);
+}
+
+.intro-grid{
+  display:grid;
+  grid-template-columns: minmax(280px, min(48vw,780px)) 1fr;
+  column-gap: var(--gap);
+  padding: 1.25rem var(--pad) 0;
+  align-items:start;
+}
+.intro-media img{
+  width:86%; /* slightly smaller hero image */
+  margin:auto;
+  border-radius:14px;
+  box-shadow:0 18px 40px rgba(0,0,0,.55);
+  display:block;
+  background:#0b0b10;
+}
+.text-card{
+  max-width:min(46vw,820px);
+  background:var(--glass-bg);
+  border:1px solid var(--glass-border);
+  border-radius:18px;
+  padding:1.5rem 1.75rem;
+  box-shadow:0 10px 20px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
+  backdrop-filter: blur(8px);
+}
+.text-card h1{margin:0 0 .35rem 0;font-size:2.4rem;letter-spacing:.2px;}
+.text-card h2{margin:.1rem 0 1rem;font-weight:500;font-size:1.02rem;color:#cfd3db;}
+.text-card p{margin:.8rem 0;line-height:1.7;color:var(--text-dim);}
+.badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.45rem;}
+.badge{background:rgba(255,255,255,.08);border:1px solid var(--glass-border);padding:.28rem .6rem;border-radius:999px;color:#e8e9ee;font-size:.82rem;}
+
+/* Details two-col */
+.section{max-width:1200px;margin:1.25rem auto 0;padding:0 1rem;}
+.grid-2{display:grid;gap:1.25rem;grid-template-columns:1.2fr .8fr;align-items:start;}
+.info-card{ background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:14px; padding:1.05rem 1.2rem; box-shadow:0 10px 22px rgba(0,0,0,.38); color:var(--text-dim); }
+.info-card h3{margin:.2rem 0 .5rem;color:#fff}
+
+/* Media tiles (standalone, no panel) */
+.media-standalone{ margin-top:1.25rem; }
+.gallery{ display:grid; gap:1.25rem; grid-template-columns: repeat(3, minmax(0,1fr)); align-items:start; }
+.tile{ position:relative; display:flex; flex-direction:column; gap:.6rem; text-decoration:none; }
+.frame{
+  height: var(--tileH);                   /* uniform frame height */
+  border-radius:14px;
+  overflow:hidden;
+  background: transparent;                /* clean float look */
+  box-shadow:0 10px 24px rgba(0,0,0,.55);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.frame img{
+  width:100%;
+  height:100%;
+  object-fit: contain;                     /* preserve aspect ratio without crop */
+  display:block;
+}
+.caption-below{
+  background: linear-gradient(180deg, rgba(0,0,0,0.92) 0%, rgba(40,40,40,0.78) 60%, rgba(80,80,80,0.62) 100%);
+  color:#f1f4fb;
+  text-align:center;
+  font-size:1.02rem;
+  line-height:1.45;
+  letter-spacing:.2px;
+  border-radius:12px;
+  padding:.6rem .8rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,.35);
+}
+
+/* Footer/Responsive */
+footer{border-top:1px solid var(--glass-border);color:#c9cdd7;padding:1.1rem;text-align:center;margin:1.6rem 0 1.8rem;}
+@media (max-width:1200px){ .gallery{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width:980px){
+  .intro-grid{grid-template-columns:1fr;}
+  .text-card{max-width:100%;}
+  .gallery{grid-template-columns:1fr;}
+  :root{ --tileH: 260px; }
+}
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div><strong>Luke Vargas</strong></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="experience.html">Experience</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+
+  <section class="intro-banner">
+    <div class="intro-grid">
+      <div class="intro-media">
+        <!-- Top section image: rushbot.png (slightly smaller) -->
+        <img src="assets/rushbot.png" alt="RushBot Rover Hero">
+      </div>
+      <div class="intro-text">
+        <div class="text-card">
+          <h1>RushBot Autonomous Rover</h1>
+          <h2>Field-ready wiring • Motor control • Maintainable electronics</h2>
+    <p>As Electronics Lead for the RushBot project, I was responsible for the full design and implementation of the rover’s electrical system. My contributions centered on developing all wiring, and integrating the hardware needed to power 13 independent motors, a LiDAR sensor, and a Raspberry Pi–Arduino control hierarchy. I used Altium Designer extensively to create nearly all schematic footprints, wiring diagrams, and PCB layouts that tied together high- and low-voltage systems.</p>
+    <p>I also co-led the assembly of our custom 4s8p lithium-ion battery pack with an integrated battery management system, ensuring safe operation under the rover’s demanding power requirements.</p>
+    <p>RushBot ultimately won first place at the Theta Tau Southwest Regional Engineering Competition, serving as a showcase of collaboration across mechanical, software, and electrical subteams. This project bettered my skills in cross-disciplinary engineering leadership and embedded systems. Media below includes board stack overview, wiring PDF, full project report, and our custom battery pack.</p>
+    <div class="badges">
+            <span class="badge">Robotics</span>
+            <span class="badge">Power &amp; Wiring</span>
+            <span class="badge">Motor Control</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="section grid-2" id="details">
+    <div class="left">
+      <div class="info-card">
+        <h3>Contributions</h3>
+        <div>
+          • Complete Circuit Design<br/>
+          • Component Selection<br/>
+          • Serviceable Electronics
+        </div>
+      </div>
+      <div class="info-card">
+        <h3>Status</h3>
+        <div>
+          • Flyer Distribution System Operational<br/>
+          • Autonomy stack in progress
+        </div>
+      </div>
+    </div>
+    <aside class="right">
+      <div class="info-card">
+        <h3>Hardware</h3>
+        <div>
+          <strong>MCU:</strong> Arduino Mega<br/>
+          <strong>Actuation:</strong> 6 DC motors + 4 servos<br/>
+          <strong>Power:</strong> Custom battery + distribution + fuse block
+        </div>
+      </div>
+      <div class="info-card">
+        <h3>Links</h3>
+        <div>See PDFs in the media section below.</div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Standalone media (no panel/title) -->
+  <section class="section media-standalone" id="media">
+    <div class="gallery">
+      <!-- 1) boardstackreport.png linking to RushbotWiring.pdf -->
+      <a class="tile" href="assets/RushbotWiring.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open RushBot Wiring PDF">
+        <div class="frame">
+          <img src="assets/boardstackreport.png" alt="Board Stack Overview">
+        </div>
+        <div class="caption-below">Board Stack Report</div>
+      </a>
+
+      <!-- 2) rushbotprojectreport.png linking to RushbotElectricalReport.pdf -->
+      <a class="tile" href="assets/RushbotElectricalReport.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open RushBot Electrical Report PDF">
+        <div class="frame">
+          <img src="assets/rushbotprojectreport.png" alt="RushBot Project Report">
+        </div>
+        <div class="caption-below">Electrical Project Report</div>
+      </a>
+
+      <!-- 3) custombattery.png (image only) -->
+      <div class="tile">
+        <div class="frame">
+          <img src="assets/custombattery.png" alt="Custom Battery Pack">
+        </div>
+        <div class="caption-below">Custom Battery and BMS</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>© <span id="y"></span> Luke Vargas</footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>

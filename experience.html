@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Experience | Luke Vargas</title>
+  <style>
+    :root{
+      --bg:#12121A;
+      --ink:#ffffff;
+      --ink-dim:#cfd3db;
+      --gold:#FFD700;
+      --glass: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.10);
+      --shadow: 0 14px 28px rgba(0,0,0,.35);
+      --pad: clamp(12px, 1.6vw, 18px);
+      --gap: clamp(14px, 2vw, 22px);
+      --radius: 16px;
+      --tileH: clamp(150px, 16vw, 180px);
+    }
+    *,*::before,*::after{ box-sizing:border-box; }
+    html,body{
+      margin:0;
+      font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+      color:var(--ink);
+      background: url('assets/banner.jpg') center/cover fixed no-repeat, var(--bg);
+    }
+    a{ color:var(--ink); text-decoration:none; }
+
+    /* Navbar */
+    .navbar{ position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:1rem 2rem; background:#000; border-bottom:1px solid rgba(255,255,255,.08); }
+    .navbar a{ color:#fff; margin-left:1.25rem; font-weight:600; }
+    .navbar a[aria-current="page"]{ border-bottom:2px solid var(--gold); padding-bottom:.25rem; }
+
+    /* Header */
+    .header{ padding: 2.5rem 8% 1.2rem; border-radius:0; }
+    .header h1{ margin:.2rem 0 0; font-size:clamp(1.9rem, 3.5vw, 2.6rem); letter-spacing:.2px; }
+    .header p{ color:var(--ink-dim); margin:.55rem 0 0; max-width:920px; }
+
+    /* 3-column grid */
+    .columns{ padding: 0 8% 2.2rem; display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(18px, 2.2vw, 26px); align-items:start; }
+    .col{ background: linear-gradient(180deg, rgba(0,0,0,.54) 0%, rgba(24,24,24,.54) 60%, rgba(40,40,40,.46) 100%); border:1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: calc(var(--pad) + 4px); }
+    .col h2{ margin:.2rem 0 .65rem; font-size: clamp(1.1rem, 1.6vw, 1.3rem); font-weight:700; }
+    .col .subtitle{ margin:-.2rem 0 .8rem; color:var(--ink-dim); font-size:.98rem; }
+
+    /* Project tiles */
+    .proj{ display:grid; grid-template-columns: 1fr; gap:.6rem; padding:.55rem; border:1px solid var(--border); border-radius:12px; background:var(--glass); box-shadow: 0 8px 18px rgba(0,0,0,.30); transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease; }
+    .proj + .proj{ margin-top:.7rem; }
+    .proj:hover{ transform: translateY(-2px); box-shadow: 0 14px 28px rgba(0,0,0,.38); border-color: rgba(255,255,255,.22); }
+    .thumb{ height: var(--tileH); border-radius:10px; background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.12)); background-size: cover; background-position:center; display:block; }
+    .info h4{ margin:.1rem 0 .15rem; font-size:1.02rem; letter-spacing:.15px; }
+    .info p{ margin:0; color:var(--ink-dim); font-size:.92rem; line-height:1.4; }
+
+    /* Coming soon */
+    .proj.disabled{ position:relative; pointer-events:none; opacity:.86; }
+    .proj.disabled::after{ content:"Coming Soon"; position:absolute; top:8px; right:8px; font-size:.78rem; background:rgba(255,215,0,.12); border:1px solid rgba(255,215,0,.45); color:#ffe48b; padding:.18rem .45rem; border-radius:999px; }
+    .thumb.placeholder{ background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.02)); border:1px dashed rgba(255,255,255,.18); display:flex; align-items:center; justify-content:center; color:#9aa3b2; font-size:.92rem; }
+
+    /* White GLASSY Research column */
+    .col.research{
+      background: linear-gradient(180deg, rgba(255,255,255,0.80) 0%, rgba(243,244,247,0.70) 100%);
+      color:#111;
+      border-color: rgba(0,0,0,0.12);
+      backdrop-filter: blur(6px);
+    }
+    .col.research .subtitle{ color:#444; }
+    .col.research .proj{ background: rgba(0,0,0,0.035); border-color: rgba(0,0,0,0.14); box-shadow: 0 8px 18px rgba(0,0,0,.10); }
+    .col.research .proj:hover{ box-shadow: 0 14px 28px rgba(0,0,0,.16); border-color: rgba(0,0,0,0.22); }
+    .col.research .info p{ color:#333; }
+    .col.research a{ color:inherit; }
+    .col.research .thumb.placeholder{ background: linear-gradient(135deg, rgba(0,0,0,.035), rgba(0,0,0,.06)); border:1px dashed rgba(0,0,0,.22); color:#666; }
+
+    /* Responsive */
+    @media (max-width: 1100px){ .columns{ grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div><strong>Luke Vargas</strong></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="experience.html" aria-current="page">Experience</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+
+  <header class="header">
+    <h1>Experience</h1>
+    <p>Browse my work by track. Research highlights my EEG/EMG and neuroscience projects. Technical covers hardware, robotics, and chip/circuit design. Leadership features service and student organizations.</p>
+  </header>
+
+  <main class="columns">
+    <!-- Research (white-themed glass) -->
+    <section class="col research" aria-labelledby="research-h">
+      <h2 id="research-h">Research</h2>
+      <div class="subtitle">BioDynamics • BCI Data Analysis</div>
+
+      <a class="proj" href="biodynamics.html" aria-label="Open BioDynamics Laboratory page">
+        <div class="thumb" style="background-image:url('assets/biodynamics.jpg')"></div>
+        <div class="info">
+          <h4>BioDynamics Laboratory</h4>
+          <p>EEG/EMG study of motor activation vs. deactivation in Go/No-Go tasks.</p>
+        </div>
+      </a>
+
+      <a class="proj" href="bci.html" aria-label="Open BCI Lab page">
+        <div class="thumb" style="background-image:url('assets/bci.jpg')"></div>
+        <div class="info">
+          <h4>BCI Lab</h4>
+          <p>EEG→MEA datasets, MATLAB analysis, and custom MEA hardware.</p>
+        </div>
+      </a>
+    </section>
+
+    <!-- Technical (dark) -->
+    <section class="col" aria-labelledby="technical-h">
+      <h2 id="technical-h">Technical</h2>
+      <div class="subtitle">Circuit & Chip Design • Robotics</div>
+
+      <a class="proj" href="hyperxite.html" aria-label="Open HyperXite EDS/Halbach page">
+        <div class="thumb" style="background-image:url('assets/hyperxite.jpg')"></div>
+        <div class="info">
+          <h4>HyperXite (EDS/Halbach)</h4>
+          <p>Levitation test rig, Halbach arrays, data collection for EDS.</p>
+        </div>
+      </a>
+
+      <a class="proj" href="rushbot.html" aria-label="Open RushBot Autonomous Rover page">
+        <div class="thumb" style="background-image:url('assets/rover.jpg')"></div>
+        <div class="info">
+          <h4>RushBot Autonomous Rover</h4>
+          <p>Electronics lead: wiring, power, 13 motors, LiDAR, and control stack.</p>
+        </div>
+      </a>
+
+      <div class="proj disabled" role="link" aria-disabled="true">
+        <div class="thumb placeholder">FogHacks</div>
+        <div class="info">
+          <h4>FogHacks</h4>
+          <p>Computational optics projection onto mist. Page in progress.</p>
+        </div>
+      </div>
+
+      <div class="proj disabled" role="link" aria-disabled="true">
+        <div class="thumb placeholder">Guidance Glasses</div>
+        <div class="info">
+          <h4>Guidance Glasses</h4>
+          <p>Wearable guidance system (hardware + perception). Page in progress.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leadership -->
+    <section class="col" aria-labelledby="leadership-h">
+      <h2 id="leadership-h">Leadership</h2>
+      <div class="subtitle">Theta Tau • Engineering Student Council • IEEE</div>
+
+      <a class="proj" href="leadership.html" aria-label="Open Leadership page">
+        <div class="thumb placeholder">Leadership</div>
+        <div class="info">
+          <h4>Leadership</h4>
+          <p></p>
+        </div>
+      </a>
+    </section>
+  </main>
+
+  <footer style="border-top:1px solid var(--border); color:#b6bcc9; padding:1.1rem; text-align:center; margin: .4rem 8% 1.6rem;">
+    © <span id="y"></span> Luke Vargas
+  </footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
