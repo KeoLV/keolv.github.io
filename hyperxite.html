@@ -14,24 +14,25 @@
   --gap: 2rem;
 }
 *,*::before,*::after{ box-sizing:border-box; }
+
 html,body{
   margin:0;
   font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;
   color:#fff;
   background:url("assets/bannerb.jpg") center/cover fixed no-repeat #0b0b10;
 }
+
+/* Navbar */
 .navbar{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:#000;border-bottom:1px solid rgba(255,255,255,.06);}
 .navbar a{color:#fff;text-decoration:none;margin-left:1.25rem;font-weight:600;}
 
-/* Black gradient banner */
+/* Hero */
 .intro-banner{
-  position:relative;
   background: linear-gradient(180deg, #000000 0%, #131313 55%, #202020 100%);
   padding: clamp(18px, 3vw, 32px) 0 clamp(14px, 2.5vw, 26px);
   border-bottom: 1px solid rgba(0,0,0,0.12);
   box-shadow: inset 0 -30px 60px rgba(0,0,0,.10), 0 14px 28px rgba(0,0,0,.12);
 }
-
 .intro-grid{
   display:grid;
   grid-template-columns: minmax(280px, min(48vw,780px)) 1fr;
@@ -40,99 +41,75 @@ html,body{
   align-items:start;
 }
 
-/* Video wrapper */
 .video-wrap{ position:relative; display:inline-block; width:100%; }
 .video-wrap video{ width:100%; border-radius:14px; display:block; box-shadow:0 18px 40px rgba(0,0,0,.55); }
-.video-wrap .loading-overlay{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.6); color:#fff; padding:.6rem 1rem; border-radius:8px; font-size:.95rem; font-weight:500; text-align:center; }
+.video-wrap .loading-overlay{
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  background:rgba(0,0,0,0.6);
+  color:#fff;
+  padding:.6rem 1rem;
+  border-radius:8px;
+  font-size:.95rem;
+  font-weight:500;
+  text-align:center;
+}
 
 .text-card{
   max-width:min(46vw,820px);
   background:var(--glass-bg);
   border:1px solid var(--glass-border);
   border-radius:18px;
-  padding:1.5rem 1.75rem;
-  box-shadow:0 10px 20px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
-  backdrop-filter: blur(8px);
+  padding:1.5rem;
 }
-.text-card h1{margin:0 0 .35rem 0;font-size:2.4rem;letter-spacing:.2px;}
-.text-card h2{margin:.1rem 0 1rem;font-weight:500;font-size:1.02rem;color:#cfd3db;}
-.text-card p{margin:.8rem 0;line-height:1.7;color:var(--text-dim);}
-.badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.45rem;}
-.badge{background:rgba(255,255,255,.08);border:1px solid var(--glass-border);padding:.28rem .6rem;border-radius:999px;color:#e8e9ee;font-size:.82rem;}
 
-/* Details two-col */
-.section{max-width:1200px;margin:1.25rem auto 0;padding:0 1rem;}
-.grid-2{display:grid;gap:1.25rem;grid-template-columns:1.2fr .8fr;align-items:start;}
-.info-card{ background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:14px; padding:1.05rem 1.2rem; box-shadow:0 10px 22px rgba(0,0,0,.38); color:var(--text-dim); }
-.info-card h3{margin:.2rem 0 .5rem;color:#fff}
-
-/* Section panels */
-.media-section{ margin-top:1rem; }
-.panel{ background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:14px; padding:1rem; box-shadow:0 10px 22px rgba(0,0,0,.38); }
-.panel h3{ margin:.2rem 0 .6rem; font-size:1.1rem; color:#fff; }
-.section-blurb{
-  margin:.6rem 0 1rem;
-  padding:.85rem 1rem;
-  background: linear-gradient(180deg, rgba(0,0,0,0.50) 0%, rgba(22,22,22,0.42) 60%, rgba(40,40,40,0.38) 100%);
+/* Info cards */
+.section{ max-width:1200px; margin:1.5rem auto; padding:0 1rem; }
+.grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:var(--gap); }
+.info-card{
+  background:var(--glass-bg);
   border:1px solid var(--glass-border);
-  border-radius:12px;
-  color:#e6eaf4;
-  line-height:1.65;
-  letter-spacing:.15px;
-  box-shadow:0 6px 16px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
+  border-radius:14px;
+  padding:1rem;
+  margin-bottom:1rem;
 }
+.info-card h3{ margin:.25rem 0 .6rem; color:#fff; font-size:1.2rem; }
 
-.gallery{ display:grid; gap:1rem; grid-template-columns: repeat(3, minmax(0,1fr)); }
-.tile{ display:flex; flex-direction:column; gap:.4rem; }
-.tile img{ width:100%; height:auto; display:block; border-radius:12px; box-shadow:0 8px 18px rgba(0,0,0,.50); background:#0b0b10; }
-.tile .caption{ font-size:.92rem; color:var(--text-dim); padding:0 .1rem; }
-
-/* Footer/Responsive */
-footer{border-top:1px solid var(--glass-border);color:#c9cdd7;padding:1.1rem;text-align:center;margin:1.6rem 0 1.8rem;}
-@media (max-width:1200px){ .gallery{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
-@media (max-width:980px){
-  .intro-grid{grid-template-columns:1fr;}
-  .text-card{max-width:100%;}
-  .grid-2{grid-template-columns:1fr;}
-  .gallery{grid-template-columns:1fr;}
+/* Panels and galleries */
+.panel{
+  background:var(--glass-bg);
+  border:1px solid var(--glass-border);
+  border-radius:14px;
+  padding:1rem;
+  margin-bottom:1.5rem;
 }
+.panel h3{ margin:.25rem 0 .6rem; font-size:1.3rem; color:#fff; }
+.section-blurb{ color:var(--text-dim); margin:.4rem 0 .9rem; line-height:1.6; }
 
-/* Figure caption style aligned with RushBot, but slightly thinner */
-.figure-caption, .caption, .img-caption, .tile .caption{
-  background: linear-gradient(180deg, rgba(0,0,0,0.96) 0%, rgba(35,35,35,0.86) 55%, rgba(70,70,70,0.70) 100%);
-  color:#ffffff;
-  text-align:center;
-  font-size:1.02rem;
+.gallery{ display:grid; gap:1rem; grid-template-columns:repeat(2,1fr); }
+.tile img{ width:100%; border-radius:12px; display:block; box-shadow:0 8px 18px rgba(0,0,0,.35); }
+.caption{
+  margin-top:.4rem;
+  font-size:.96rem;
   font-weight:400;
-  line-height:1.45;
-  letter-spacing:.2px;
-  border:1px solid var(--glass-border);
-  border-radius:12px;
-  padding:.5rem .85rem;
-  margin:.4rem auto 0;
-  width:90%;
-  box-shadow: 0 7px 18px rgba(0,0,0,.42);
+  text-align:center;
+  color:#fff;
+  background: rgba(0,0,0,0.6);
+  padding:.4rem .8rem;
+  border-radius:10px;
+  display:inline-block;
 }
 
-/* Force white links everywhere */
-body a, .info-card a, .panel a, .text-card a, nav a{
-  color:#ffffff !important;
-  text-decoration:underline;
+@media(max-width:980px){
+  .intro-grid{ grid-template-columns:1fr; }
+  .grid-2{ grid-template-columns:1fr; }
+  .gallery{ grid-template-columns:1fr; }
 }
-body a:visited, .info-card a:visited, .panel a:visited, .text-card a:visited, nav a:visited{
-  color:#ffffff !important;
-}
-body a:hover, .info-card a:hover, .panel a:hover, .text-card a:hover, nav a:hover{
-  color:#ffffff !important;
-  text-decoration:none;
-}
-body a:active, .info-card a:active, .panel a:active, .text-card a:active, nav a:active{
-  color:#ffffff !important;
-}
+
+footer{ border-top:1px solid rgba(255,255,255,.15); color:#aaa; padding:1.1rem; text-align:center; margin-top:1.4rem; }
   </style>
 </head>
 <body>
-
   <div class="navbar">
     <div><strong>Luke Vargas</strong></div>
     <nav>
@@ -142,13 +119,13 @@ body a:active, .info-card a:active, .panel a:active, .text-card a:active, nav a:
     </nav>
   </div>
 
+  <!-- HERO -->
   <section class="intro-banner">
     <div class="intro-grid">
       <div class="intro-media">
         <div class="video-wrap">
           <video autoplay muted loop playsinline poster="assets/hyperxite_poster.png" onplay="this.nextElementSibling.style.display='none'">
             <source src="assets/hyperxite_demo.mp4" type="video/mp4"/>
-            Your browser does not support the video tag.
           </video>
           <div class="loading-overlay">Loading video…</div>
         </div>
@@ -157,20 +134,86 @@ body a:active, .info-card a:active, .panel a:active, .text-card a:active, nav a:
         <div class="text-card">
           <h1>HyperXite EDS / Halbach</h1>
           <h2>Active Maglev Experiment • Halbach Arrays • Mechanical Design</h2>
-          <p>This project focused on the physical design and implementation of a passive electrodynamic suspension (EDS) system for magnetic levitation, utilizing Halbach arrays. I led the design and fabrication of the levitation test rig and magnetic pucks used to experimentally analyze lift, drag, and stability. All components were CAD-modeled in SolidWorks and manufactured via 3D printing and machining. The project was part of UCI’s Hyperloop team, HyperXite. Our subteam, Levitation R&amp;D, won 1st place in Research Excellence at the 2025 Hyperloop Global Conference in Queen’s University, Canada.</p>
+          <p>This project focused on the physical design and implementation of a passive electrodynamic suspension (EDS) system for magnetic levitation, utilizing Halbach arrays. I led the design and fabrication of the levitation test rig and magnetic pucks used to experimentally analyze lift, drag, and stability. All components were CAD-modeled in SolidWorks and manufactured via 3D printing and machining. The project was part of UCI’s Hyperloop team, HyperXite. Our subteam, Levitation R&D, won 1st place in Research Excellence at the 2025 Hyperloop Global Conference in Queen’s University, Canada.</p>
           <div class="badges">
-            <span class="badge">Electrodynamic suspensions (EDS)</span>
+            <span class="badge">Electrodynamic Suspensions (EDS)</span>
             <span class="badge">Arduino</span>
-            <span class="badge">Data analysis</span>
+            <span class="badge">Flipsky ESC</span>
+            <span class="badge">SolidWorks</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- rest of your main + media sections remain unchanged -->
+  <!-- Contributions / Outcomes / Stack -->
+  <main class="section grid-2" id="details">
+    <div class="left">
+      <div class="info-card">
+        <h3>Key Contributions</h3>
+        <div>• CAD &amp; Mechanical integration<br/>• Data Capture and Analysis</div>
+      </div>
+      <div class="info-card">
+        <h3>Outcomes</h3>
+        <div>• Designed a scalable electrodynamic suspension (EDS)<br/>• Collected lift, drag, stability, temperature rise, and current draw</div>
+      </div>
+    </div>
+    <aside class="right">
+      <div class="info-card">
+        <h3>Stack</h3>
+        <div><strong>Hardware:</strong> NdFeB magnets, aluminum track, 3D-printed fixtures<br/>
+        <strong>Sensors:</strong> ToF, IR thermometer, encoder<br/>
+        <strong>Control:</strong> Arduino + CSV logging</div>
+      </div>
+      <div class="info-card">
+        <h3>Links</h3>
+        <div><a href="https://lnkd.in/p/gYc4mUma" target="_blank" rel="noopener">HyperXite at Annual Design Review</a></div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Media -->
+  <section class="section" id="media">
+    <div class="media-section">
+      <div class="panel">
+        <h3>CAD &amp; Mechanical Integration</h3>
+        <div class="section-blurb">All manufactured parts including circular Halbach array puck, motor interface mount, and wall inserts were designed using SolidWorks. The Test Rig was designed to be a scalable aluminum extrusion frame with linear slide rails, motor mount, and proper mass distribution for optimal data collection.</div>
+        <div class="gallery">
+          <div class="tile"><img src="assets/edsrig.png" alt="EDS Rig"><div class="caption">EDS Demonstration Rig Design</div></div>
+          <div class="tile"><img src="assets/halbachpuck.png" alt="Halbach Puck"><div class="caption">Halbach Array Puck with Wall Inserts</div></div>
+          <div class="tile"><img src="assets/testrig.png" alt="Test Rig"><div class="caption">Test Rig Design</div></div>
+          <div class="tile"><img src="assets/motormount.png" alt="Motor Mount"><div class="caption">Motor Mount Interface</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="media-section">
+      <div class="panel">
+        <h3>Fabrication &amp; Assembly</h3>
+        <div class="section-blurb">Fully assembled rig includes an aluminum extrusion frame with aluminum plate for levitation. Components were printed using PLA+ and PETG, with machined aluminum for load-bearing links. The aluminum plate minimized eddy current losses and aided heat dissipation.</div>
+        <div class="gallery">
+          <div class="tile"><img src="assets/testrigas.png" alt="Test Rig Assembly"><div class="caption">Test Rig Assembly</div></div>
+          <div class="tile"><img src="assets/magnetic.png" alt="Magnetic"><div class="caption">Magnetic Paper visualizing Magnetic Field</div></div>
+          <div class="tile"><img src="assets/edsrigas.png" alt="EDS Rig Assembly"><div class="caption">Full Assembly of EDS Demonstration Rig</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="media-section">
+      <div class="panel">
+        <h3>Results</h3>
+        <div class="section-blurb">A Time-of-Flight sensor interfaced with an Arduino and laptop was used to log air gap measurements during levitation. Duty cycle and RPM were controlled using Flipsky ESCs and motors. Temperature rise due to eddy currents was recorded using an IR thermometer aimed at the levitation plate. Voltage and current were monitored through the power supply display to estimate power consumption during trials.</div>
+        <div class="gallery">
+          <div class="tile"><img src="assets/powervsrpm.png" alt="Power vs RPM"><div class="caption">Power vs RPM</div></div>
+          <div class="tile"><img src="assets/dutycycle.png" alt="Duty Cycle"><div class="caption">Air Gap vs Duty Cycle</div></div>
+          <div class="tile"><img src="assets/airgaprpm.png" alt="Air Gap vs RPM"><div class="caption">Air Gap vs RPM</div></div>
+        </div>
+        <div class="section-blurb">Levitation starts at 50% duty cycle, with the air gap peaking around 80%. Temperatures on the aluminum plate reach 80°C with no load, and ~90°C with load, with an air gap of 14–16 mm. Current demand is highest at low duty cycles.</div>
+      </div>
+    </div>
+  </section>
 
   <footer>© <span id="y"></span> Luke Vargas</footer>
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
 </body>
 </html>
