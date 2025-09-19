@@ -19,160 +19,73 @@
 }
 
 *,:before,:after{ box-sizing:border-box; }
-html,body{ margin:0; font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif; background: var(--bg); color: var(--text); }
+html,body{ margin:0; font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif; background:var(--bg); color:var(--text); }
 a{ color: inherit; text-decoration: none; }
 
-/* NAVBAR uses bannerw2 */
+/* NAVBAR */
 .navbar{
-  position: sticky; top: 0; z-index: 50;
+  position:sticky; top:0; z-index:50;
   display:flex; align-items:center; justify-content:space-between;
-  padding: 1rem 2rem; border-bottom: 1px solid var(--border-light);
-  background: url('assets/bannerw2.jpg') center/cover no-repeat, #ffffff;
-  color:#111;
+  padding:1rem 2rem; border-bottom:1px solid var(--border-light);
+  background:#ffffff; color:#111;
 }
 .navbar a, .navbar strong{ color:#111; font-weight:600; }
-.navbar a + a{ margin-left: 1.25rem; }
+.navbar a + a{ margin-left:1.25rem; }
 
-/* HERO uses bannerw3 */
+/* HERO */
 .intro-banner{
-  background: url('assets/bannerw3.jpg') center/cover no-repeat, #ffffff;
-  padding: clamp(18px, 3vw, 32px) 0 clamp(14px, 2.5vw, 26px);
-  border-bottom: 1px solid var(--border-light);
-  box-shadow: inset 0 -30px 60px rgba(0,0,0,.04);
+  background:linear-gradient(180deg,#ffffff 0%,#f5f7fa 50%,#e9edf2 100%);
+  padding:clamp(18px,3vw,32px) 0 clamp(14px,2.5vw,26px);
+  border-bottom:1px solid var(--border-light);
+  box-shadow:inset 0 -18px 36px rgba(0,0,0,.05);
 }
-.intro-grid{ display:grid; grid-template-columns: minmax(280px, min(48vw,780px)) 1fr; column-gap: var(--gap); padding: 1.25rem var(--pad) 0; align-items:start; }
-.intro-media video, .intro-media img{ width:100%; border-radius:14px; box-shadow: var(--shadow); display:block; background:#fff; }
+.intro-grid{ display:grid; grid-template-columns:minmax(280px,min(48vw,780px)) 1fr; column-gap:var(--gap); padding:1.25rem var(--pad) 0; align-items:start; }
+
+.video-wrap{ position:relative; display:inline-block; width:100%; }
+.video-wrap video{ width:100%; border-radius:14px; display:block; box-shadow:var(--shadow); background:#fff; }
+.video-wrap .loading-overlay{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.6); color:#fff; padding:.6rem 1rem; border-radius:8px; font-size:.95rem; font-weight:500; text-align:center; }
+
 .text-card{
   max-width:min(46vw,820px);
-  background: var(--glass-light);
-  border: 1px solid var(--border-light);
-  border-radius: 18px;
-  padding: 1.2rem 1.3rem;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(8px);
+  background:var(--glass-light);
+  border:1px solid var(--border-light);
+  border-radius:18px;
+  padding:1.2rem 1.3rem;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(8px);
 }
-.text-card h1{ margin: 0 0 .35rem 0; font-size: 2.2rem; letter-spacing: .2px; }
-.text-card h2{ margin: .15rem 0 .7rem; font-weight: 500; font-size: 1.05rem; color: #1f2937; }
-.text-card p{ margin: .6rem 0; line-height: 1.6; color: #374151; }
+.text-card h1{ margin:0 0 .35rem 0; font-size:2.2rem; letter-spacing:.2px; }
+.text-card h2{ margin:.15rem 0 .7rem; font-weight:500; font-size:1.05rem; color:#1f2937; }
+.text-card p{ margin:.6rem 0; line-height:1.6; color:#374151; }
 .badges{ display:flex; flex-wrap:wrap; gap:.45rem; margin-top:.35rem; }
 .badge{ background:#f2f4f7; border:1px solid var(--border-light); padding:.22rem .5rem; border-radius:999px; color:#111; font-size:.8rem; }
 
-/* MEDIA WRAPPER uses bannerw2 */
-.media-bg{
-  background: url('assets/bannerw2.jpg') center/cover no-repeat, #ffffff;
-  padding: 0 0 1.2rem;
-}
+/* MEDIA BACKGROUND */
+.media-bg{ background:url('assets/bannerw2.jpg') center/cover no-repeat,#ffffff; padding:0 0 1.2rem; }
 
 /* Sections */
-.section{ max-width: 1200px; margin: 1.1rem auto 0; padding: 0 1rem; }
+.section{ max-width:1200px; margin:1.1rem auto 0; padding:0 1rem; }
+.panel{ background:var(--glass-light); border:1px solid var(--border-light); border-radius:var(--radius); padding:1rem; box-shadow:var(--shadow); backdrop-filter:blur(6px); }
+.panel h3{ margin:.25rem 0 .6rem; font-size:1.3rem; color:#111; }
+.panel .panel-note{ color:#374151; line-height:1.6; margin:.1rem 0 .75rem; }
 
-/* Panels (single glass container per section) */
-.panel{
-  background: var(--glass-light);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius);
-  padding: 1rem;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(6px);
-}
-.panel h3{
-  margin: .25rem 0 .6rem;
-  font-size: 1.3rem;  /* larger */
-  color: #111;       /* black */
-}
-.panel .panel-note{
-  color: #374151;
-  line-height: 1.6;
-  margin: .1rem 0 .75rem;
-}
-
-/* Gallery with per-image captions */
-.gallery{
-  display:grid; gap: .8rem;
-  grid-template-columns: repeat(3, minmax(0,1fr));
-}
-figure.tile{
-  margin:0; background:transparent; display:flex; flex-direction:column; gap:.35rem;
-}
-figure.tile img{
-  width: 100%; height: auto; display: block;
-  border-radius: 12px; box-shadow: 0 8px 18px rgba(0,0,0,.10);
-  background: #f7f7f7;
-}
-figure.tile figcaption.caption{
-  font-size:.92rem; color:#1f2937; line-height:1.35; padding:0 .1rem;
-}
+/* Gallery */
+.gallery{ display:grid; gap:.8rem; grid-template-columns:repeat(3,minmax(0,1fr)); }
+figure.tile{ margin:0; display:flex; flex-direction:column; gap:.25rem; }
+figure.tile img{ width:100%; height:auto; display:block; border-radius:12px; box-shadow:0 8px 18px rgba(0,0,0,.10); background:#f7f7f7; }
+figure.tile figcaption.caption{ font-size:.92rem; color:#1f2937; line-height:1.35; text-align:center; font-weight:600; }
 
 /* Bottom photo + notes */
-.photo-notes{ display:grid; grid-template-columns: 1.1fr .9fr; gap:1rem; align-items:start; }
-.photo-notes .photo img{ width:100%; border-radius:14px; box-shadow: var(--shadow); background:#fff; }
-.note-card{
-  background: var(--glass-light);
-  border: 1px solid var(--border-light);
-  border-radius: 14px;
-  padding: 1rem;
-  color: #374151;
-  box-shadow: var(--shadow);
-}
+.photo-notes{ display:grid; grid-template-columns:1.1fr .9fr; gap:1rem; align-items:start; }
+.photo-notes .photo img{ width:100%; border-radius:14px; box-shadow:var(--shadow); background:#fff; }
+.note-card{ background:var(--glass-light); border:1px solid var(--border-light); border-radius:14px; padding:1rem; color:#374151; box-shadow:var(--shadow); }
 .note-card h4{ margin:.2rem 0 .45rem; color:#111; font-size:1.05rem; }
 
 footer{ border-top:1px solid var(--border-light); color:#6b7280; padding:1.1rem; text-align:center; margin-top:1.4rem; }
 
-@media (max-width: 1200px){
-  .gallery{ grid-template-columns: repeat(2, minmax(0,1fr)); }
-}
-@media (max-width: 980px){
-  .intro-grid{ grid-template-columns: 1fr; }
-  .text-card{ max-width: 100%; }
-  .gallery{ grid-template-columns: 1fr; }
-  .photo-notes{ grid-template-columns: 1fr; gap: .8rem; }
-}
-</style>
-<style id="override-bci">
-
-/* === Overrides injected by ChatGPT === */
-.navbar{
-  background:#ffffff !important;
-  color:#111 !important;
-  border-bottom:1px solid rgba(0,0,0,0.12) !important;
-}
-.navbar a, .navbar strong{
-  color:#111 !important;
-}
-
-/* Hero banner: white → light grey gradient */
-.intro-banner{
-  background: linear-gradient(180deg, #ffffff 0%, #f5f7fa 50%, #e9edf2 100%) !important;
-  box-shadow: inset 0 -18px 36px rgba(0,0,0,.05) !important;
-}
-
-/* Improve image title visibility and center them */
-.caption, figcaption.caption, .media-card figcaption, .tile .caption{
-  text-align:center !important;
-  color:#111 !important;
-  font-weight:600 !important;
-  font-size:0.98rem !important;
-  line-height:1.35 !important;
-}
-
-/* If captions sit on dark glass, give them a subtle light chip */
-.panel .caption{
-  background: rgba(255,255,255,0.65);
-  display:inline-block;
-  padding: .25rem .5rem;
-  border-radius: 999px;
-  border: 1px solid rgba(0,0,0,0.08);
-}
-
-/* Ensure general figure captions (if any) are centered too */
-.media-card figcaption{
-  text-align:center !important;
-}
-
-/* Optional: tighten extra space under figures */
-figure.tile{ gap: .25rem !important; }
-
-</style>
+@media(max-width:1200px){ .gallery{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:980px){ .intro-grid{ grid-template-columns:1fr; } .text-card{ max-width:100%; } .gallery{ grid-template-columns:1fr; } .photo-notes{ grid-template-columns:1fr; gap:.8rem; } }
+  </style>
 </head>
 <body>
   <div class="navbar">
@@ -186,12 +99,20 @@ figure.tile{ gap: .25rem !important; }
 
   <section class="intro-banner">
     <div class="intro-grid">
-      <div class="intro-media"><video autoplay muted loop playsinline controls><source src="assets/bci_demo.mp4" type="video/mp4"/></video></div>
+      <div class="intro-media">
+        <div class="video-wrap">
+          <video autoplay muted loop playsinline poster="assets/bci_poster.png" onplay="this.nextElementSibling.style.display='none'">
+            <source src="assets/bci_demo.mp4" type="video/mp4"/>
+            Your browser does not support the video tag.
+          </video>
+          <div class="loading-overlay">Loading video…</div>
+        </div>
+      </div>
       <div class="intro-text">
         <div class="text-card">
           <h1>BCI Lab</h1>
           <h2>Circuit design for EEG acquisition • Lightweight research validation</h2>
-          <p>My main contributions to this lab has been circuit design and lighter research and analysis through MATLAB. Our foremost project involves our EEG to Microelectode Array (MEA) experiment, where I have been designing our stimulation and control system. The video shows clips from our Calit2 presentation for 2025.</p>
+          <p>My main contributions to this lab have been circuit design and data processing and analysis through MATLAB. Our foremost project involves our EEG to Microelectrode Array (MEA) experiment, where I have been designing our stimulation and control system. The video shows clips from our Calit2 presentation for 2025.</p>
           <div class="badges"><span class="badge">EEG</span><span class="badge">Circuit Design</span><span class="badge">Shielding/EMI</span><span class="badge">MATLAB</span></div>
         </div>
       </div>
@@ -199,74 +120,52 @@ figure.tile{ gap: .25rem !important; }
   </section>
 
   <div class="media-bg">
-    
-<section class="section">
-  <div class="panel">
-    <h3>MEA Data Analysis</h3>
-    <div class="panel-note">Using MATLAB and custom-written functions, I took over a hundred datasets across multiple trials per MEA and processed, cleaned, and prepared them for analyzation. EEG signals from human eye-blink tasks were applied to neurons cultured from human stem cells, and I analyzed the pre and post stimulation recordings. After identifying and tabulating noisy channels across each of the 10 MEA recordings, the datasets I generated became the foundation for training a model that automatically detect and filter noisy MEA channels, improving the reliability of our experimental pipeline. Using the raster plots, I also generated correlation plots used to map our neural networks. </div>
-    <div class="gallery">
-      <figure class="tile">
-        <img src="assets/bci_raster.png" alt="Raster Plot">
-        <figcaption class="caption">Raster Plot</figcaption>
-      </figure>
-      <figure class="tile">
-        <img src="assets/bci_correlation.png" alt="Correlation Matrix">
-        <figcaption class="caption">Correlation Matrix</figcaption>
-      </figure>
-      <figure class="tile">
-        <img src="assets/bci_noisy.png" alt="Noisy Channel Detector">
-        <figcaption class="caption">Noisy Channel Detection</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
+    <section class="section">
+      <div class="panel">
+        <h3>MEA Data Analysis</h3>
+        <div class="panel-note">
+          <p>Using MATLAB and custom-written functions, I took over a hundred datasets across multiple trials per MEA and processed, cleaned, and prepared them for analysis. EEG signals from human eye-blink tasks were applied to neurons cultured from human stem cells, and I analyzed the pre- and post-stimulation recordings.</p>
+          <p>After identifying and tabulating noisy channels across each of the 10 MEA recordings, the datasets I generated became the foundation for training a model that automatically detects and filters noisy MEA channels, improving the reliability of our experimental pipeline.</p>
+          <p>I converted the processed and clean data to raster plots which highlight the firing activity of an MEA in a given trial for both pre and post stimulation. Using the raster datasets, I also generated correlation plots used to map our neural networks.</p>
+        </div>
+        <div class="gallery">
+          <figure class="tile"><img src="assets/bci_raster.png" alt="Raster Plot"><figcaption class="caption">Raster Plot</figcaption></figure>
+          <figure class="tile"><img src="assets/bci_correlation.png" alt="Correlation Matrix"><figcaption class="caption">Correlation Matrix</figcaption></figure>
+          <figure class="tile"><img src="assets/bci_noisy.png" alt="Noisy Channel Detector"><figcaption class="caption">Noisy Channel Detection</figcaption></figure>
+        </div>
+      </div>
+    </section>
 
-    
-<section class="section">
-  <div class="panel">
-    <h3>Circuit Design</h3>
-    <div class="panel-note">Using Altium, SolidWorks, and circuit design principles, I have designed an MEA recording and stimulation system from the ground up. The system contains 2 types of boards, the MEA Module, which houses 2 stim/recording Intan RHS21116 chips per Module Board, and the MEA Interface, which connects to the MEA via gold push pins. A total of 4 Intan chips per system is required - 16 channels per chip. Our lab uses 10 MEAs with 60 channels each, and we use one system at a time to record and stimulate our MEAs. Our original system had a few areas I sought to improve, namely to reduce EMI as one of our systems was unable to record without significant noise passing through our filters. In my design, I changed our mezzanine connectors to high quality Omnetics A79030 and A79031, added plating to the edge of the boards, and switched standoffs to reduce EMI. Other changes I made include a larger MEA Module board and an improvement in silkscreen labeling. I referenced the Intan and Omnetics datasheets to verify my changes.</div>
-    <div class="gallery">
-      <figure class="tile">
-        <img src="assets/bci_schematic_01.png" alt="Schematic 1">
-        <figcaption class="caption">MEA Module Schematic</figcaption>
-      </figure>
-      <figure class="tile">
-        <img src="assets/bci_schematic_02.png" alt="Schematic 2">
-        <figcaption class="caption">MEA Interface Schematic</figcaption>
-      </figure>
-      <figure class="tile">
-        <img src="assets/bci_3d_01.png" alt="3D View 1">
-        <figcaption class="caption">Altium 3D View of MEA Module</figcaption>
-      </figure>
-      <figure class="tile">
-        <img src="assets/bci_3d_02.png" alt="3D View 2">
-        <figcaption class="caption">Altium 3D View of MEA Interface</figcaption>
-      </figure>
-      <figure class="tile">
-        <img src="assets/bci_closeup.png" alt="Close-up">
-        <figcaption class="caption">Circuit Board Troubleshooting</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
+    <section class="section">
+      <div class="panel">
+        <h3>Circuit Design</h3>
+        <div class="panel-note">
+          <p>Using Altium, SolidWorks, and circuit design principles, I have designed an MEA recording and stimulation system from the ground up. The system contains two types of boards: the MEA Module, which houses two stim/recording Intan RHS21116 chips per Module Board, and the MEA Interface, which connects to the MEA via gold push pins. A total of four Intan chips per system is required, with 16 channels per chip.</p>
+          <p>Our lab uses 10 MEAs with 60 channels each, and we use one system at a time to record and stimulate our MEAs. Our original system had a few areas I sought to improve, namely to reduce EMI as one of our systems was unable to record without significant noise passing through our filters. In my design, I changed our mezzanine connectors to high-quality Omnetics A79030 and A79031, added plating to the edge of the boards, and switched standoffs to reduce EMI. Other changes I made include enlarging the MEA Module board and improving silkscreen labeling. I referenced the Intan and Omnetics datasheets to verify my changes.</p>
+        </div>
+        <div class="gallery">
+          <figure class="tile"><img src="assets/bci_schematic_01.png" alt="MEA Module Schematic"><figcaption class="caption">MEA Module Schematic</figcaption></figure>
+          <figure class="tile"><img src="assets/bci_schematic_02.png" alt="MEA Interface Schematic"><figcaption class="caption">MEA Interface Schematic</figcaption></figure>
+          <figure class="tile"><img src="assets/bci_3d_01.png" alt="Altium 3D View of MEA Module"><figcaption class="caption">Altium 3D View of MEA Module</figcaption></figure>
+          <figure class="tile"><img src="assets/bci_3d_02.png" alt="Altium 3D View of MEA Interface"><figcaption class="caption">Altium 3D View of MEA Interface</figcaption></figure>
+          <figure class="tile"><img src="assets/bci_closeup.png" alt="Circuit Board Troubleshooting"><figcaption class="caption">Circuit Board Troubleshooting</figcaption></figure>
+        </div>
+      </div>
+    </section>
 
-    
-<section class="section">
-  <div class="photo-notes">
-    <div class="photo">
-      <img src="assets/bci_photo.png" alt="BCI Photo">
-    </div>
-    <div class="note-card">
-      <h4>Lab Experience</h4>
-      <p>I joined the Brain Computer Interface Lab at UCI almost 2 years ago with the intent to learn more about BCI’s and how they function. My time in the Brain-Computer Interface Lab has been transformative both technically and personally. I started as an undergraduate researcher, and was given the task of running and adjusting functions in MATLAB, and labeling noisy channels for our lab’s EEG to MEA project. However, my role evolved into full-scale hardware design, where I learned to integrate SolidWorks and Altium with electrical design principles to build custom MEA recording systems from the ground up. <p></p>The challenges pushed me to grow as an engineer, while the collaborative environment of working alongside PhD students and faculty mentors taught me the value of persistence, clear communication, and teamwork. I’m proud of the contributions I’ve made to our EEG-to-MEA project, grateful for the incredible lab team that turned every challenge into a learning opportunity, and look forward to further contributions in this lab.</p>
-    </div>
-  </div>
-</section>
-
+    <section class="section">
+      <div class="photo-notes">
+        <div class="photo"><img src="assets/bci_photo.png" alt="BCI Photo"></div>
+        <div class="note-card">
+          <h4>Lab Experience</h4>
+          <p>I joined the Brain Computer Interface Lab at UCI almost 2 years ago with the intent to learn more about BCIs and how they function. My time in the Brain-Computer Interface Lab has been transformative both technically and personally. I started as an undergraduate researcher, and was given the task of running and adjusting functions in MATLAB, and labeling noisy channels for our lab’s EEG to MEA project.</p>
+          <p>However, my role evolved into full-scale hardware design, where I learned to integrate SolidWorks and Altium with electrical design principles to build custom MEA recording systems from the ground up. The challenges pushed me to grow as an engineer, while the collaborative environment of working alongside PhD students and faculty mentors taught me the value of persistence, clear communication, and teamwork. I’m proud of the contributions I’ve made to our EEG-to-MEA project, grateful for the incredible lab team that turned every challenge into a learning opportunity, and look forward to further contributions in this lab.</p>
+        </div>
+      </div>
+    </section>
   </div>
 
   <footer>© <span id="y"></span> Luke Vargas</footer>
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
 </body>
 </html>
