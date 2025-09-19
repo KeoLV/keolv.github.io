@@ -1,219 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HyperXite EDS / Halbach | Luke Vargas</title>
-  <style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BioDynamics Laboratory | Luke Vargas</title>
+<style>
 :root{
-  --glass-bg: rgba(12,12,16,0.55);
-  --glass-border: rgba(255,255,255,0.08);
-  --text-dim:#d7d7d7;
-  --gold:#FFD700;
-  --pad: 1rem;
-  --gap: 2rem;
+--glass-bg: rgba(255,255,255,0.72);
+--glass-border: rgba(120,120,120,0.18);
+--text-dim:#333333;
+--gold:#FFD700;
+--pad: 1rem;
+--gap: 2rem;
+      /* unified vertical spacing between sections (top→middle, middle→bottom) */
+--section-gap-y: clamp(24px, 4vw, 32px);
 }
 *,*::before,*::after{ box-sizing:border-box; }
-
-html,body{
-  margin:0;
-  font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;
-  color:#fff;
-  background:url("assets/bannerb.jpg") center/cover fixed no-repeat #0b0b10;
+@@ -25,153 +24,51 @@
+min-height:100%;
 }
 
-/* Navbar */
-.navbar{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:#000;border-bottom:1px solid rgba(255,255,255,.06);}
-.navbar a{color:#fff;text-decoration:none;margin-left:1.25rem;font-weight:600;}
+    /* NAV stays white */
+.navbar{
+display:flex;align-items:center;justify-content:space-between;
+padding:1rem 2rem;background:#ffffff;border-bottom:1px solid #e6e6e6;
+}
+.navbar a{color:#000;text-decoration:none;margin-left:1.25rem;font-weight:600;}
 
-/* Hero */
+    /* ====== TOP (video + title/text) with white→grey gradient ====== */
 .intro-banner{
-  background: linear-gradient(180deg, #000000 0%, #131313 55%, #202020 100%);
-  padding: clamp(18px, 3vw, 32px) 0 clamp(14px, 2.5vw, 26px);
-  border-bottom: 1px solid rgba(0,0,0,0.12);
-  box-shadow: inset 0 -30px 60px rgba(0,0,0,.10), 0 14px 28px rgba(0,0,0,.12);
+position:relative;
+background: linear-gradient(180deg, #ffffff 0%, #f3f4f6 55%, #e5e7eb 100%);
+padding: clamp(18px, 3vw, 32px) 0 clamp(14px, 2.5vw, 26px);
+      margin-bottom: var(--section-gap-y); /* bigger gap to middle section */
+      border-bottom: none;
+      box-shadow: none;
 }
+
 .intro-grid{
-  display:grid;
-  grid-template-columns: minmax(280px, min(48vw,780px)) 1fr;
-  column-gap: var(--gap);
-  padding: 1.25rem var(--pad) 0;
-  align-items:start;
+display:grid;
+grid-template-columns: minmax(280px, min(48vw,780px)) 1fr;
+column-gap: var(--gap);
+padding: 1.25rem var(--pad) 0;
+align-items:start;
 }
-
-.video-wrap{ position:relative; display:inline-block; width:100%; }
-.video-wrap video{ width:100%; border-radius:14px; display:block; box-shadow:0 18px 40px rgba(0,0,0,.55); }
-.video-wrap .loading-overlay{
-  position:absolute; top:50%; left:50%;
-  transform:translate(-50%,-50%);
-  background:rgba(0,0,0,0.6);
-  color:#fff;
-  padding:.6rem 1rem;
-  border-radius:8px;
-  font-size:.95rem;
-  font-weight:500;
-  text-align:center;
+    .intro-media video{
+      width:100%;
+      border-radius:14px;
+      box-shadow:none;
+      display:block;
 }
-
 .text-card{
-  max-width:min(46vw,820px);
-  background:var(--glass-bg);
-  border:1px solid var(--glass-border);
-  border-radius:18px;
-  padding:1.5rem;
+max-width:min(46vw,820px);
+background:var(--glass-bg);
+border:1px solid var(--glass-border);
+border-radius:18px;
+padding:1.5rem 1.75rem;
+      box-shadow:none;
+backdrop-filter: blur(8px);
+color:#000;
 }
+.text-card h1{margin:0 0 .35rem 0;font-size:2.6rem;letter-spacing:.3px;color:#000;}
+    .text-card h2{margin:.1rem 0 1.1rem;font-weight:500;font-size:1.05rem;color:#555555;}
+.text-card p{margin:.9rem 0;line-height:1.7;color:var(--text-dim);}  
 
-/* Info cards */
-.section{ max-width:1200px; margin:1.5rem auto; padding:0 1rem; }
-.grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:var(--gap); }
-.info-card{
-  background:var(--glass-bg);
-  border:1px solid var(--glass-border);
-  border-radius:14px;
-  padding:1rem;
-  margin-bottom:1rem;
-}
-.info-card h3{ margin:.25rem 0 .6rem; color:#fff; font-size:1.2rem; }
+    /* ====== MIDDLE (poster+text, report+text, graph+text) ====== */
+    .below-row{
+      display:grid;
+      grid-template-columns: minmax(280px, min(48vw,780px)) 1fr; /* mirrors intro-grid */
+      column-gap: var(--gap);
+      padding: 0 var(--pad);
+      align-items:center;
+      margin-bottom: var(--section-gap-y); /* bigger gap to bottom section */
+      background: transparent; /* show page bg */
+    }
+    .left{ background: transparent; }
 
-/* Panels and galleries */
-.panel{
-  background:var(--glass-bg);
-  border:1px solid var(--glass-border);
-  border-radius:14px;
-  padding:1rem;
-  margin-bottom:1.5rem;
-}
-.panel h3{ margin:.25rem 0 .6rem; font-size:1.3rem; color:#fff; }
-.section-blurb{ color:var(--text-dim); margin:.4rem 0 .9rem; line-height:1.6; }
+    .poster-report{
+      display:flex;
+      justify-content:center;
+      gap:1.25rem;
+      flex-wrap:wrap;
+    }
+    .media-card{
+      background:var(--glass-bg);
+      border:1px solid var(--glass-border);
+      border-radius:14px;
+      box-shadow:none;
+      overflow:hidden;
+      transition:transform .18s ease, box-shadow .18s ease;
+      text-decoration:none; color:inherit; display:flex; flex-direction:column;
+      max-width:320px;
+    }
+    .media-card img{width:100%;height:auto;display:block;}
+    .media-card figcaption{
+      padding:.8rem 1rem;
+      font-size:.9rem;
+      color:var(--text-dim);
+      display:flex;align-items:center;
+      min-height:110px;
+    }
+    .media-card:hover{transform:translateY(-2px);}
+    .media-card.small{ width:280px; justify-self:center; }
 
-.gallery{ display:grid; gap:1rem; grid-template-columns:repeat(2,1fr); }
-.tile img{ width:100%; border-radius:12px; display:block; box-shadow:0 8px 18px rgba(0,0,0,.35); }
-.caption{
-  margin-top:.4rem;
-  font-size:.96rem;
-  font-weight:400;
-  text-align:center;
-  color:#fff;
-  background: rgba(0,0,0,0.6);
-  padding:.4rem .8rem;
-  border-radius:10px;
-  display:inline-block;
-}
+    .graph-combo{
+      display:flex;
+      align-items:stretch;
+      width: min(100%, 720px);
+      border-radius:14px;
+      overflow:visible;
+      gap:0;
+    }
+    .graph-combo .graph-img{
+      flex: 0 0 64%;
+      width:64%;
+      height:auto;
+      display:block;
+      border-radius:14px 0 0 14px;
+      box-shadow:none;
+      background:transparent;
+    }
+    .graph-combo .sidecap{
+      flex: 0 0 36%;
+      background:var(--glass-bg);
+      border:1px solid var(--glass-border);
+      border-left:none;
+      border-radius:0 14px 14px 0;
+      padding:1rem 1.15rem;
+      color:var(--text-dim);
+      font-size:.96rem; line-height:1.45;
+      box-shadow:none;
+      display:flex; align-items:center;
+      word-break:break-word; hyphens:auto;
+    }
+    .graph-combo .sidecap p{margin:0;}
 
-@media(max-width:980px){
-  .intro-grid{ grid-template-columns:1fr; }
-  .grid-2{ grid-template-columns:1fr; }
-  .gallery{ grid-template-columns:1fr; }
-}
+    /* ====== BOTTOM (YouTube link block) ====== */
+    .mini{
+      max-width:1000px;
+      margin:0 auto 3rem; /* overall bottom space */
+      padding:0 var(--pad);
+      position:relative;
+      z-index:0;
+      background: transparent; /* show page bg */
+    }
+    .mini-card{
+      background:var(--glass-bg);border:1px solid var(--glass-border);
+      border-radius:16px;padding:1.1rem 1.25rem;box-shadow:none;
+      display:flex;align-items:center;gap:1rem;
+    }
+    .mini-card p{flex:1;margin:.2rem 0;color:var(--text-dim);line-height:1.65;}
+    .btn{
+      display:inline-block;background:var(--white);color:#171717;font-weight:700;text-decoration:none;border-radius:10px;
+      padding:.65rem 1rem;white-space:nowrap;box-shadow:none;
+      transition:transform .15s ease, filter .15s ease;
+    }
+    .btn:hover{transform:translateY(-1px);filter:brightness(1.02);}  
 
-footer{ border-top:1px solid rgba(255,255,255,.15); color:#aaa; padding:1.1rem; text-align:center; margin-top:1.4rem; }
-  </style>
+    /* ====== Responsive ====== */
+    @media (max-width:980px){
+      .intro-grid{grid-template-columns:1fr;}
+      .media-card.small{width:100%; max-width:380px;}
+      .below-row{grid-template-columns:1fr;}
+      .poster-report{justify-content:center;}
+      .graph-combo{flex-direction:column; width:100%;}
+      .graph-combo .graph-img{width:100%; border-radius:14px 14px 0 0;}
+      .graph-combo .sidecap{flex:0 0 auto; border-left:1px solid var(--glass-border); border-radius:0 0 14px 14px;}
+    }
+</style>
 </head>
 <body>
-  <div class="navbar">
-    <div><strong>Luke Vargas</strong></div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="experience.html">Experience</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
+@@ -189,57 +86,26 @@
+<section class="intro-banner">
+<div class="intro-grid">
+<div class="intro-media">
+        <video autoplay muted loop playsinline>
+          <source src="assets/biodynamics_demo.mp4" type="video/mp4"/>
+          Your browser does not support the video tag.
+        </video>
+</div>
 
-  <!-- HERO -->
-  <section class="intro-banner">
-    <div class="intro-grid">
-      <div class="intro-media">
-        <div class="video-wrap">
-          <video autoplay muted loop playsinline poster="assets/hyperxite_poster.png" onplay="this.nextElementSibling.style.display='none'">
-            <source src="assets/hyperxite_demo.mp4" type="video/mp4"/>
-          </video>
-          <div class="loading-overlay">Loading video…</div>
-        </div>
-      </div>
-      <div class="intro-text">
-        <div class="text-card">
-          <h1>HyperXite EDS / Halbach</h1>
-          <h2>Active Maglev Experiment • Halbach Arrays • Mechanical Design</h2>
-          <p>This project focused on the physical design and implementation of a passive electrodynamic suspension (EDS) system for magnetic levitation, utilizing Halbach arrays. I led the design and fabrication of the levitation test rig and magnetic pucks used to experimentally analyze lift, drag, and stability. All components were CAD-modeled in SolidWorks and manufactured via 3D printing and machining. The project was part of UCI’s Hyperloop team, HyperXite. Our subteam, Levitation R&D, won 1st place in Research Excellence at the 2025 Hyperloop Global Conference in Queen’s University, Canada.</p>
-          <div class="badges">
-            <span class="badge">Electrodynamic Suspensions (EDS)</span>
-            <span class="badge">Arduino</span>
-            <span class="badge">Flipsky ESC</span>
-            <span class="badge">SolidWorks</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<div class="intro-text">
+<div class="text-card">
+<h1>BioDynamics Laboratory</h1>
+<h2>EEG-Based Study of Motor Initiation in Go/No-Go Tasks</h2>
+          <p>I spent almost 3 months in Osaka, Japan as I conducted research at Osaka University’s BioDynamics Laboratory on cortical mechanisms of motor initiation, focusing on the difference between muscle activation and deactivation. Using EEG and EMG recordings during a controlled hand-grip Go/No-Go task, I compared cortical responses when subjects either engaged or released muscles.</p>
+          <p>My analysis showed that muscle release requires significantly more cortical processing power than activation, with stronger event-related desynchronization in beta and gamma bands. These findings can potentially explain why Parkinson’s disease patients struggle with gait initiation, where disengaging muscles is just as critical as activating them.</p>
+          <p>The project combined experimental design, EEG/EMG hardware setup, and custom MATLAB using EEGLAB processing pipelines, producing insights that could inform therapeutic strategies for neurodegenerative motor impairments.</p>
+</div>
+</div>
+</div>
+</section>
 
-  <!-- Contributions / Outcomes / Stack -->
-  <main class="section grid-2" id="details">
+  <!-- MIDDLE -->
+  <section class="below-row">
     <div class="left">
-      <div class="info-card">
-        <h3>Key Contributions</h3>
-        <div>• CAD &amp; Mechanical integration<br/>• Data Capture and Analysis</div>
-      </div>
-      <div class="info-card">
-        <h3>Outcomes</h3>
-        <div>• Designed a scalable electrodynamic suspension (EDS)<br/>• Collected lift, drag, stability, temperature rise, and current draw</div>
-      </div>
-    </div>
-    <aside class="right">
-      <div class="info-card">
-        <h3>Stack</h3>
-        <div><strong>Hardware:</strong> NdFeB magnets, aluminum track, 3D-printed fixtures<br/>
-        <strong>Sensors:</strong> ToF, IR thermometer, encoder<br/>
-        <strong>Control:</strong> Arduino + CSV logging</div>
-      </div>
-      <div class="info-card">
-        <h3>Links</h3>
-        <div><a href="https://lnkd.in/p/gYc4mUma" target="_blank" rel="noopener">HyperXite at Annual Design Review</a></div>
-      </div>
-    </aside>
-  </main>
+      <div class="poster-report">
+        <a href="https://lnkd.in/p/gVFuGRxA" target="_blank" rel="noopener noreferrer" class="media-card small" aria-label="Open LinkedIn poster post">
+          <img src="assets/biodynamics_poster.png" alt="Poster Presentation">
+          <figcaption>Poster Presentation at Osaka University, Suita Campus with Assistant Professor Akihiro Nakamura. Poster summarizes objectives, methods, and EEG/EMG findings from the release Go/No-Go grip task.</figcaption>
+        </a>
 
-  <!-- Media -->
-  <section class="section" id="media">
-    <div class="media-section">
-      <div class="panel">
-        <h3>CAD &amp; Mechanical Integration</h3>
-        <div class="section-blurb">All manufactured parts including circular Halbach array puck, motor interface mount, and wall inserts were designed using SolidWorks. The Test Rig was designed to be a scalable aluminum extrusion frame with linear slide rails, motor mount, and proper mass distribution for optimal data collection.</div>
-        <div class="gallery">
-          <div class="tile"><img src="assets/edsrig.png" alt="EDS Rig"><div class="caption">EDS Demonstration Rig Design</div></div>
-          <div class="tile"><img src="assets/halbachpuck.png" alt="Halbach Puck"><div class="caption">Halbach Array Puck with Wall Inserts</div></div>
-          <div class="tile"><img src="assets/testrig.png" alt="Test Rig"><div class="caption">Test Rig Design</div></div>
-          <div class="tile"><img src="assets/motormount.png" alt="Motor Mount"><div class="caption">Motor Mount Interface</div></div>
-        </div>
+        <a href="assets/Luke_Vargas_Report.pdf" target="_blank" rel="noopener noreferrer" class="media-card small" aria-label="Open research report PDF">
+          <img src="assets/biodynamics_paper.png" alt="Research Report (PDF)">
+          <figcaption><br><br>Full technical report detailing the design, acquisition settings, preprocessing, processing and time–frequency analysis methods.</figcaption>
+        </a>
       </div>
     </div>
 
-    <div class="media-section">
-      <div class="panel">
-        <h3>Fabrication &amp; Assembly</h3>
-        <div class="section-blurb">Fully assembled rig includes an aluminum extrusion frame with aluminum plate for levitation. Components were printed using PLA+ and PETG, with machined aluminum for load-bearing links. The aluminum plate minimized eddy current losses and aided heat dissipation.</div>
-        <div class="gallery">
-          <div class="tile"><img src="assets/testrigas.png" alt="Test Rig Assembly"><div class="caption">Test Rig Assembly</div></div>
-          <div class="tile"><img src="assets/magnetic.png" alt="Magnetic"><div class="caption">Magnetic Paper visualizing Magnetic Field</div></div>
-          <div class="tile"><img src="assets/edsrigas.png" alt="EDS Rig Assembly"><div class="caption">Full Assembly of EDS Demonstration Rig</div></div>
+    <div class="right">
+      <div class="graph-combo">
+        <img class="graph-img" src="assets/biodynamics_graph.png" alt="EEG Time-Frequency Graph">
+        <div class="sidecap">
+          <p>This graphic depicts results for the average time-frequency and time-amplitude response of the EEG and EMG combined. Channel C3 is used to represent the average cortical response. This channel was selected due to its center placement and lack of noise. The time-amplitude plots are placed below its corresponding time-frequency plot, and plot EMG signal one (blue) and EMG signal two (red): blue represents the Wrist Flexor Muscle Group and red represents the Forearm Flexor Muscle Group.</p>
         </div>
-      </div>
-    </div>
-
-    <div class="media-section">
-      <div class="panel">
-        <h3>Results</h3>
-        <div class="section-blurb">A Time-of-Flight sensor interfaced with an Arduino and laptop was used to log air gap measurements during levitation. Duty cycle and RPM were controlled using Flipsky ESCs and motors. Temperature rise due to eddy currents was recorded using an IR thermometer aimed at the levitation plate. Voltage and current were monitored through the power supply display to estimate power consumption during trials.</div>
-        <div class="gallery">
-          <div class="tile"><img src="assets/powervsrpm.png" alt="Power vs RPM"><div class="caption">Power vs RPM</div></div>
-          <div class="tile"><img src="assets/dutycycle.png" alt="Duty Cycle"><div class="caption">Air Gap vs Duty Cycle</div></div>
-          <div class="tile"><img src="assets/airgaprpm.png" alt="Air Gap vs RPM"><div class="caption">Air Gap vs RPM</div></div>
-        </div>
-        <div class="section-blurb">Levitation starts at 50% duty cycle, with the air gap peaking around 80%. Temperatures on the aluminum plate reach 80°C with no load, and ~90°C with load, with an air gap of 14–16 mm. Current demand is highest at low duty cycles.</div>
       </div>
     </div>
   </section>
 
-  <footer>© <span id="y"></span> Luke Vargas</footer>
-  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+  <!-- BOTTOM -->
+  <section class="mini">
+    <div class="mini-card">
+      <p>This experience was my first time abroad ever, and my first time being so far from family and friends. I recorded much of my time and put together a compilation you can watch here.</p>
+      <a class="btn" href="https://youtu.be/YIsdZGlX0uI" target="_blank" rel="noopener noreferrer">Abroad Video Compilation</a>
+    </div>
+  </section>
+
 </body>
 </html>
